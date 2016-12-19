@@ -28,6 +28,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var mButton: UIButton!
     
     @IBAction func saveButtonPress(_ sender: Any) {
+        if let image = self.imageView.image {
+            let imageData = UIImageJPEGRepresentation(image, 0.6)
+            let compressedJPGImage = UIImage(data: imageData!)
+            UIImageWriteToSavedPhotosAlbum(compressedJPGImage!, nil, nil, nil)
+            
+            let alert = UIAlertView(title: "Done",
+                                    message: "Your image has been saved to Photo Library!",
+                                    delegate: nil,
+                                    cancelButtonTitle: "Ok")
+            alert.show()
+        }else{
+            let alert = UIAlertView(title: "Nope",
+                                    message: "Draw something before saving!",
+                                    delegate: nil,
+                                    cancelButtonTitle: "Ok")
+            alert.show()
+
+        }
     }
     @IBAction func eraserButton(_ sender: Any) {
         currentColor = UIColor.white.cgColor
