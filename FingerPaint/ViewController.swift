@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var bButton: UIButton!
     @IBOutlet weak var gButton: UIButton!
     @IBOutlet weak var mButton: UIButton!
+    @IBOutlet weak var cButton: UIButton!
+    @IBOutlet weak var yButton: UIButton!
     
     @IBAction func saveButtonPress(_ sender: Any) {
         if let image = self.imageView.image {
@@ -33,48 +35,81 @@ class ViewController: UIViewController {
             let compressedJPGImage = UIImage(data: imageData!)
             UIImageWriteToSavedPhotosAlbum(compressedJPGImage!, nil, nil, nil)
             
+            /*
             let alert = UIAlertView(title: "Done",
                                     message: "Your image has been saved to Photo Library!",
                                     delegate: nil,
                                     cancelButtonTitle: "Ok")
             alert.show()
+ */
         }else{
+            /*
             let alert = UIAlertView(title: "Nope",
                                     message: "Draw something before saving!",
                                     delegate: nil,
                                     cancelButtonTitle: "Ok")
             alert.show()
+ */
 
         }
     }
+    func setActiveBtn(btn : Any){
+        
+        let b = btn as! UIButton
+        
+        rButton.layer.borderWidth = 0
+        gButton.layer.borderWidth = 0
+        bButton.layer.borderWidth = 0
+        mButton.layer.borderWidth = 0
+        cButton.layer.borderWidth = 0
+        b.layer.borderWidth = 5
+    }
     @IBAction func eraserButton(_ sender: Any) {
         currentColor = UIColor.white.cgColor
+        setActiveBtn(btn: sender)
     }
     
     @IBAction func redButton(_ sender: Any) {
         currentColor = UIColor.red.cgColor
+        setActiveBtn(btn: sender)
     }
     @IBAction func blueButton(_ sender: Any) {
         currentColor = UIColor.blue.cgColor
+        setActiveBtn(btn: sender)
     }
     @IBAction func greenButton(_ sender: Any) {
         currentColor = UIColor.green.cgColor
+        setActiveBtn(btn: sender)
     }
     @IBAction func pinkButton(_ sender: Any) {
         currentColor = UIColor.magenta.cgColor
+        setActiveBtn(btn: sender)
     }
     
+    @IBAction func cyanButton(_ sender: Any) {
+        currentColor = UIColor.cyan.cgColor
+        setActiveBtn(btn: sender)
+    }
     
+    @IBAction func yellowButton(_ sender: Any) {
+        currentColor = UIColor.yellow.cgColor
+        setActiveBtn(btn: sender)
+    }
     @IBAction func clearButton(_ sender: Any) {
         imageView.image=nil
     }
     @IBOutlet weak var clearButton: UIButton!
     override func viewDidLoad() {
+        
         clearButton.layer.cornerRadius = 10
         rButton.layer.cornerRadius = 10
         gButton.layer.cornerRadius = 10
         bButton.layer.cornerRadius = 10
         mButton.layer.cornerRadius = 10
+        cButton.layer.cornerRadius = 10
+        yButton.layer.cornerRadius = 10
+        
+        rButton.layer.borderWidth = 5
         super.viewDidLoad()
     }
 
